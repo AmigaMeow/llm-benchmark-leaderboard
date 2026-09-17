@@ -1,0 +1,46 @@
+# ---- 依赖 ----
+/vendor/
+node_modules/
+
+# ---- 运行时数据（绝不入库）----
+/cache/
+/logs/
+/tmp/
+/uploads/
+/storage/
+/backups/
+/output/
+
+# ---- 上游原始数据快照：不进仓库，由使用者自行采集 ----
+/data/raw/
+*.raw.json
+raw-*.json
+
+# ---- 本地配置：真实值一律不进仓库 ----
+.env
+.env.*
+!/**/.env.example
+/config/*.php
+!/config/*.example.php
+/config.php
+/.htaccess
+*.pem
+*.key
+id_rsa*
+
+# ---- 备份与临时产物 ----
+*.bak
+*.bak.*
+*.backup
+*.orig
+*.rej
+*.sql.gz
+*.sqlite
+*.log
+
+# ---- 编辑器 / 系统 ----
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
