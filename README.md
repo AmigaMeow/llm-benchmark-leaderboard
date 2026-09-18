@@ -5,9 +5,21 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PHP 8.1+](https://img.shields.io/badge/PHP-8.1%2B-777bb4.svg)](https://www.php.net/)
 
-从**开源 / 编程 / 性价比 / 最新 / 速度**等多个维度对比主流大模型；评分取 LMArena（Bradley-Terry 口径），价格取 OpenRouter，不自造总分。
+从**开源 / 编程 / 性价比 / 最新 / 速度**等多个维度对比主流大模型。
+
+> ⚠️ **本仓库自带的是虚构示例数据**（24 个 Preview* 模型，`data/llm-leaderboard.sample.json`），仅用于演示界面。
+> 真实分数需自行运行 `scripts/sync-llm-leaderboard.php` 从上游数据源拉取：Arena 评分来自 LMArena
+> （Bradley-Terry 口径，数据需遵守上游条款），价格与上架信息来自 OpenRouter；Artificial Analysis
+> 源默认关闭（`show_aa=false`），启用前请先阅读其 Data Platform Terms。
 
 > 由 [17nas.com](https://17nas.com/) 开源 —— 一个 NAS 与网络工具站。
+
+## Screenshots
+
+| 排行榜 | Pareto 性价比图 | 模型详情页 |
+|---|---|---|
+| ![Leaderboard](docs/screenshots/leaderboard.png) | ![Pareto chart](docs/screenshots/pareto-chart.png) | ![Model detail](docs/screenshots/model-detail.png) |
+*截图均为虚构示例数据*
 
 ---
 
