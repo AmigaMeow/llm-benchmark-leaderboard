@@ -1069,19 +1069,16 @@ $supportSectionCount = (!empty($unrankedModels) ? 1 : 0) + (!empty($timelineMode
             $llmSourceEntries = [
                 'lmarena' => [
                     'url' => 'https://lmarena.ai/',
-                    'logo' => '/assets/llm/logos/lmarena.png',
                     'name' => 'LMArena',
                     'desc' => $llm_seo('llm.source_lmarena', 'Arena 评分，数据集 CC-BY-4.0'),
                 ],
                 'openrouter' => [
                     'url' => 'https://openrouter.ai/',
-                    'logo' => '/assets/llm/logos/openrouter.png',
                     'name' => 'OpenRouter',
                     'desc' => $llm_seo('llm.source_openrouter', '模型价格与上架信息'),
                 ],
                 'aa' => [
                     'url' => 'https://artificialanalysis.ai/',
-                    'logo' => '/assets/llm/logos/artificialanalysis.ico',
                     'name' => 'Artificial Analysis',
                     'desc' => $llm_seo('llm.source_aa', '评测智能指数，未在本表展示'),
                 ],
