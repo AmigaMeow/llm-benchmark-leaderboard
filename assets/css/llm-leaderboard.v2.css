@@ -1,0 +1,719 @@
+/* Large language model leaderboard — component-scoped styles */
+.llm-leaderboard-page {
+    --llm-bg: #f4f6f8;
+    --llm-panel: #ffffff;
+    --llm-text: #172033;
+    --llm-muted: #667085;
+    --llm-border: #e4e8ee;
+    --llm-blue: #2563eb;
+    --llm-blue-soft: #eff6ff;
+    --llm-green: #15803d;
+    --llm-green-soft: #ecfdf3;
+    /* 站点头部 nav.top-navbar 是 sticky（桌面实测 61px），表头粘顶要避开它 */
+    --llm-nav-h: 61px;
+    background: var(--llm-bg);
+    color: var(--llm-text);
+    font-family: Arial, "Noto Sans", sans-serif;
+}
+.llm-leaderboard-page [hidden] { display: none !important; }
+.llm-leaderboard-page :is(a, button, input, select, [tabindex]) { scroll-margin-block: 84px; }
+#llm-views { scroll-margin-top: 84px; }
+
+.llm-leaderboard-page .page-shell {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 24px 72px;
+}
+
+.llm-hero {
+    margin: 0 0 20px;
+}
+
+.llm-leaderboard-page .page-title { margin: 0; }
+.llm-leaderboard-page .page-title h1 {
+    margin: 0;
+    color: var(--llm-text);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 720;
+    letter-spacing: -.035em;
+    line-height: 1.16;
+}
+.llm-leaderboard-page .page-title p {
+    max-width: 46rem;
+    margin: 10px 0 0;
+    color: var(--llm-muted);
+    font-size: .9375rem;
+    line-height: 1.65;
+}
+
+.llm-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 14px; margin-top: 12px; color: var(--llm-muted); font-size: .8125rem; line-height: 1.5; }
+.llm-meta-item + .llm-meta-item::before { margin-right: 14px; color: #c5ccd6; content: '·'; }
+.llm-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 3px 10px;
+    border: 1px solid var(--llm-border);
+    border-radius: 999px;
+    background: #fff;
+    color: #475467;
+    font-size: .8125rem;
+    line-height: 1.35;
+}
+.llm-chip.is-stale { border-color: #f6d58a; background: #fffbeb; color: #9a6700; }
+
+.llm-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+    margin: 0 0 10px;
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--llm-border);
+}
+#llm-views { display: flex; align-self: stretch; gap: 20px; }
+a.llm-view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: #475467;
+    font-size: .875rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.llm-view-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+a.llm-view-btn:hover { color: var(--llm-blue); }
+a.llm-view-btn.is-active { border-color: var(--llm-blue); color: #1d4ed8; }
+
+#llm-filters.llm-filters { display: flex; flex: 1 1 440px; align-items: center; justify-content: flex-end; gap: 8px; }
+.llm-search-wrap { position: relative; flex: 1 1 220px; max-width: 330px; }
+.llm-search-icon { position: absolute; top: 50%; left: 13px; width: 18px; height: 18px; transform: translateY(-50%); color: #98a2b3; pointer-events: none; }
+#llm-search,
+.llm-select-wrap select {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--llm-text);
+    font: inherit;
+    font-size: .875rem;
+    outline: none;
+}
+#llm-search { padding: 0 12px 0 40px; }
+#llm-search::placeholder { color: #98a2b3; }
+.llm-select-wrap { position: relative; min-width: 126px; }
+.llm-select-wrap > span { display: block; margin: 0 0 3px 1px; color: #667085; font-size: .6875rem; font-weight: 600; line-height: 1; }
+.llm-select-wrap select { padding: 0 31px 0 10px; appearance: none; cursor: pointer; }
+.llm-select-wrap::after { position: absolute; top: 50%; right: 12px; width: 7px; height: 7px; border-right: 1.5px solid #667085; border-bottom: 1.5px solid #667085; content: ''; transform: translateY(-65%) rotate(45deg); pointer-events: none; }
+#llm-search:focus, .llm-select-wrap select:focus, .llm-view-btn:focus-visible, .llm-chart-select:focus-visible, .llm-detail-close:focus-visible, #llm-chart-expand:focus-visible, .llm-chart-controls :is(button, select):focus-visible { border-color: var(--llm-blue); box-shadow: 0 0 0 3px rgba(37, 99, 235, .16); outline: none; }
+.llm-filter-submit { min-height: 44px; padding: 0 13px; border: 1px solid var(--llm-blue); border-radius: 8px; background: var(--llm-blue); color: #fff; font: inherit; font-size: .875rem; font-weight: 650; cursor: pointer; }
+
+.llm-results-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin: 16px 2px 10px; color: var(--llm-muted); font-size: .875rem; }
+.llm-results-count-wrap { display: inline-flex; align-items: baseline; gap: 6px; }
+#llm-results-count { color: var(--llm-text); font-weight: 700; font-variant-numeric: tabular-nums; }
+/* 显示口径切换（按档位 / 按模型）：两个真链接（无 JS 也能切、也能被爬虫跟随），
+   放在条数旁边 —— 切换时那个数字从 120 变 54，本身就把「折叠了什么」说清楚了。 */
+.llm-group-switch { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--llm-border); border-radius: 999px; background: #f8fafc; }
+.llm-group-btn { display: inline-flex; align-items: center; min-height: 22px; padding: 0 10px; border-radius: 999px; color: #475467; font-size: .75rem; font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap; }
+.llm-group-btn:hover { color: var(--llm-blue); }
+.llm-group-btn.is-active { background: #fff; color: #1d4ed8; box-shadow: 0 1px 2px rgba(16, 24, 40, .08); }
+.llm-group-btn:focus-visible { outline: 2px solid var(--llm-blue); outline-offset: 1px; }
+
+#llm-table-wrap { overflow-x: auto; border: 1px solid var(--llm-border); border-radius: 14px; background: var(--llm-panel); box-shadow: 0 1px 2px rgba(16, 24, 40, .03); -webkit-overflow-scrolling: touch; }
+#llm-table-wrap.can-drag { cursor: grab; }
+#llm-table-wrap.is-dragging { cursor: grabbing; user-select: none; }
+/* 折叠表头：#llm-table-wrap 自己当滚动口。站点把 overflow-x 锁死在 html/body 上（header.php 内联
+   `html, body { overflow-x: hidden !important }`，页面里的广告脚本还会再加一条 `html { overflow-x: clip
+   !important }`），body 因此成了滚动容器，页面里的 position:sticky 全都失效——站点头部当年就是被这条
+   逼成 position:fixed 的。所以这里不跟站点规则打架：给表格容器一个「视口高 - 头部 - 余量」的上限，
+   表头在容器内滚动时固定在顶部。移动端是卡片布局（thead 隐藏、容器不滚动），不受影响。 */
+@media (min-width: 601px) {
+    #llm-table-wrap { max-height: calc(100vh - var(--llm-nav-h) - 40px); overflow: auto; }
+    .llm-table thead th { position: sticky; top: 0; z-index: 3; background: #fff; box-shadow: inset 0 -1px 0 var(--llm-border); }
+    .llm-table thead th:first-child { border-top-left-radius: 13px; }
+    .llm-table thead th:last-child { border-top-right-radius: 13px; }
+}
+.llm-table { width: 100%; min-width: 0; border-collapse: collapse; table-layout: fixed; }
+@media (min-width: 601px) { .llm-table { min-width: 1000px; } }
+.llm-table th, .llm-table td { border-bottom: 1px solid #edf0f3; text-align: left; }
+.llm-table thead th { padding: 11px 12px; background: #f8fafc; color: #667085; font-size: .75rem; font-weight: 650; letter-spacing: .02em; line-height: 1.25; }
+.llm-table td { padding: 12px; color: var(--llm-text); font-size: .875rem; vertical-align: middle; }
+.llm-table tbody tr:last-child td { border-bottom: 0; }
+.llm-table tbody tr:hover { background: #fafcff; }
+.llm-table .llm-col-rank { width: 4%; text-align: center; }
+.llm-table .llm-col-model { width: 22%; }
+.llm-table .llm-col-arena { width: 10%; text-align: right; }
+/* 主指标列比其他数值列宽一档：数值 + 对比条要在一个格里放得下 */
+.llm-table .llm-col-intel { width: 11%; text-align: right; }
+.llm-table .llm-col-speed, .llm-table .llm-col-ttft { width: 7%; text-align: right; font-variant-numeric: tabular-nums; }
+.llm-table .llm-col-pin, .llm-table .llm-col-pout { width: 10%; text-align: right; }
+.llm-table .llm-col-value { width: 8%; text-align: right; }
+.llm-table .llm-col-date, .llm-table .llm-col-listed { width: 8%; text-align: right; }
+.llm-table .num, .llm-price-num, .llm-value-num, .llm-arena-score { font-variant-numeric: tabular-nums; }
+.llm-heading-with-tip { display: inline-flex; align-items: center; gap: 4px; }
+/* 可排序表头：<th> 里是真链接（无 JS 也能排序），整格可点，箭头只标当前列 */
+.llm-table thead th.is-sortable { padding: 0; }
+.llm-table thead th.is-sortable .llm-heading-with-tip { display: flex; width: 100%; align-items: center; }
+.llm-sort { display: inline-flex; flex: 1 1 auto; min-width: 0; align-items: center; gap: 4px; min-height: 40px; padding: 11px 12px; color: inherit; font: inherit; text-decoration: none; }
+.llm-table .llm-col-arena .llm-sort, .llm-table .llm-col-intel .llm-sort, .llm-table .llm-col-speed .llm-sort,
+.llm-table .llm-col-ttft .llm-sort, .llm-table .llm-col-pin .llm-sort, .llm-table .llm-col-pout .llm-sort,
+.llm-table .llm-col-value .llm-sort, .llm-table .llm-col-date .llm-sort { justify-content: flex-end; }
+.llm-sort-arrow { flex: 0 0 auto; color: #b3bcc9; font-size: .625rem; line-height: 1; }
+.llm-sort:hover, .llm-sort:hover .llm-sort-arrow { color: var(--llm-blue); }
+.llm-sort.is-active, .llm-sort.is-active .llm-sort-arrow { color: #1d4ed8; }
+.llm-sort:focus-visible { border-radius: 6px; outline: 2px solid var(--llm-blue); outline-offset: -3px; }
+.llm-table thead th.is-sortable .llm-info-tip { margin-right: 10px; }
+/* 主指标列（有 AA 分就是智能指数，否则 Arena）：数值加重 + 归一化对比条；
+   标签只在移动端出现，桌面靠表头。 */
+.llm-primary { display: flex; min-width: 0; align-items: center; justify-content: flex-end; gap: 8px; }
+.llm-primary-label { display: none; }
+.llm-primary-value { flex: 0 0 auto; color: #1d4ed8; font-size: .9375rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.llm-primary-value.is-empty { color: #98a2b3; font-weight: 400; }
+.llm-meter { display: block; flex: 0 1 52px; min-width: 18px; height: 6px; overflow: hidden; border-radius: 999px; background: #edf1f6; }
+.llm-meter-fill { display: block; height: 100%; border-radius: inherit; background: var(--llm-blue); }
+.llm-info-tip { display: inline-grid; width: 17px; height: 17px; place-items: center; padding: 0; border: 1px solid #cbd5e1; border-radius: 50%; background: #fff; color: #475467; cursor: help; font: 700 11px/1 Arial, sans-serif; }
+.llm-tooltip { position: absolute; z-index: 10; display: none; width: min(280px, calc(100vw - 32px)); padding: 9px 10px; border-radius: 8px; background: #1f2937; color: #fff; font-size: .75rem; font-weight: 400; line-height: 1.5; text-align: left; white-space: normal; box-shadow: 0 8px 20px rgba(16, 24, 40, .2); }
+.llm-col-arena { position: relative; }
+.llm-col-arena:hover .llm-tooltip, .llm-col-arena:focus-within .llm-tooltip, .llm-tooltip.is-open { display: block; }
+
+.llm-model-cell { display: flex; min-width: 0; align-items: center; gap: 9px; }
+.llm-logo { display: inline-grid; flex: 0 0 26px; width: 26px; height: 26px; place-items: center; overflow: hidden; border-radius: 50%; background: #f2f4f7; }
+.llm-org-icon, .llm-org-mark { grid-area: 1 / 1; width: 24px; height: 24px; object-fit: contain; }
+.llm-org-mark { display: grid; place-items: center; color: #475467; font-size: .75rem; font-weight: 700; }
+/* 模型格：模型名 +（厂商 · 许可）+（按档位视图里的档位徽标）。
+   原先写的是「一行放完」，但实际只在 601–1000px 那一档成立：桌面档模型列仅 22%（≈250px）放不下，
+   本来就折成两行，而 601–1000px 档把模型列放宽到 32%（≈320px）反而挤成一行 —— 同一个站两种样子。
+   现在表格档一律把「厂商 + 许可」放到第二行（见下方 .llm-model-org 的 flex-basis），断点之间表现一致。
+   代价实测为 0：那一档行高本由 Arena 列（分数 + 区间徽标两行）决定，模型格折行后 58px 只变 59px。 */
+.llm-model-text { display: flex; min-width: 0; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+.llm-model-name { display: flex; flex-wrap: wrap; min-width: 0; align-items: center; gap: 2px 6px; color: var(--llm-text); font-weight: 650; line-height: 1.35; white-space: nowrap; }
+.llm-model-name > a { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+/* 推理强度档位徽标：只在「按档位」视图里有意义（那一屏一档一行；按模型视图不画） */
+.llm-effort-badge { display: inline-flex; flex: 0 0 auto; align-items: center; min-height: 18px; padding: 1px 6px; border: 1px solid #cfe0f5; border-radius: 999px; background: #f1f6fd; color: #0b5cad; font-size: .6875rem; font-weight: 600; line-height: 1.2; white-space: nowrap; }
+.llm-model-name:hover { color: var(--llm-blue); }
+.llm-table .llm-model-name a { color: inherit; }
+.llm-model-org { display: flex; min-width: 0; align-items: center; gap: 5px; overflow: hidden; color: var(--llm-muted); font-size: .75rem; font-weight: 400; line-height: 1.3; white-space: nowrap; }
+.llm-model-org > .llm-badge { flex: 0 0 auto; }
+/* 「厂商 + 许可徽标」在表格档固定占满一行（flex-basis:100% 在 wrap 容器里强制换行），
+   于是三个表格断点都是「名称 / 厂商·许可」两行。限定 ≥601px 是刻意的：移动端卡片档的模型头
+   只有一行，多一行会给 54 张卡都白撑高。 */
+@media (min-width: 601px) { .llm-table .llm-model-org { flex-basis: 100%; } }
+.llm-rank-dot { display: inline-grid; min-width: 26px; height: 26px; place-items: center; border: 1px solid var(--llm-border); border-radius: 999px; background: #f8fafc; color: #475467; font-size: .75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+/* 前三名金银铜徽章：名次是扫读第一落点，颜色只在这里用（不改动其它语义色） */
+.llm-rank-dot.r1 { border-color: #e0a93c; background: #fdf0d0; color: #8a5c12; }
+.llm-rank-dot.r2 { border-color: #b6bfcc; background: #eef1f5; color: #46505f; }
+.llm-rank-dot.r3 { border-color: #d0925c; background: #fbeee1; color: #8f4f1d; }
+.llm-rank-move { margin-left: 3px; color: #667085; font-size: .6875rem; }
+/* 同族（同一模型的不同推理档位）：6 色调色板只在这里用。撞色就等于没标，所以相邻的两个多档族
+   一定不同色（数据层 llm_board_family_marks 保证）；非相邻族复用颜色是刻意的取舍。 */
+.llm-table { --llm-family-1: #0f766e; --llm-family-2: #7c3aed; --llm-family-3: #be123c; --llm-family-4: #4d7c0f; --llm-family-5: #0369a1; --llm-family-6: #a21caf; }
+/* 名次格左侧色条：把散落在不同名次的同族行连起来（族色由 <tr> 上的 --llm-family 提供）。
+   只在「按档位」视图里出现：按模型视图一行一个模型，不需要这条连线。 */
+.llm-table tbody tr.is-family td.llm-col-rank { box-shadow: inset 3px 0 0 var(--llm-family); }
+.llm-arena-cell, .llm-price-cell { display: flex; flex-direction: column; gap: 2px; }
+.llm-col-arena .llm-arena-cell, .llm-col-pin .llm-price-cell, .llm-col-pout .llm-price-cell { align-items: flex-end; }
+.llm-arena-score { font-weight: 700; }
+/* Arena 置信区间（±半宽）：比分数小一号并弱化；缺 CI 的模型不渲染这个元素。
+   桌面列里 .llm-arena-cell 是纵向 flex（右对齐），所以徽标自然落在分数下面一行。 */
+.llm-ci { color: var(--llm-muted); font-size: .6875rem; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.llm-price-num, .llm-value-num { color: #344054; font-weight: 600; }
+.llm-badge { display: inline-flex; align-items: center; min-height: 20px; padding: 1px 6px; border: 1px solid #d0d5dd; border-radius: 999px; color: #475467; font-size: .6875rem; font-weight: 600; line-height: 1.2; white-space: nowrap; }
+.llm-badge-open { border-color: #b7e4c7; background: #f0fdf4; color: #16713a; }
+.llm-badge-closed, .llm-badge-pending { background: #f8fafc; }
+.llm-new-badge { display: inline-flex; margin-left: 5px; color: var(--llm-blue); font-size: .6875rem; font-weight: 700; }
+/* Intentional: old JS can still emit these while the data refreshes; do not render visual bars. */
+.llm-bar-track, .llm-bar-fill, .llm-bar-arena, .llm-bar-price, .llm-bar-fill-price, .llm-heat, .llm-compare-bar, #llm-compare-bar, #llm-bars, .llm-model-check, .llm-col-check { display: none !important; }
+
+.llm-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 22px 0; }
+.llm-summary-card { display: block; min-height: 108px; padding: 15px; border: 1px solid var(--llm-border); border-radius: 12px; background: #fff; color: inherit; text-decoration: none; }
+.llm-summary-card:hover { border-color: #bdd2fb; box-shadow: 0 3px 10px rgba(16, 24, 40, .06); }
+.llm-summary-label, .llm-summary-sub { display: block; color: var(--llm-muted); font-size: .75rem; line-height: 1.4; }
+.llm-summary-name { display: block; overflow: hidden; margin: 8px 0 4px; color: var(--llm-text); font-size: .9375rem; line-height: 1.3; text-overflow: ellipsis; white-space: nowrap; }
+.llm-method-note { color: var(--llm-muted); font-size: .8125rem; line-height: 1.65; }
+#llm-table-wrap details.llm-method-note { margin: 0 0 28px; }
+.llm-method-link { color: var(--llm-blue); }
+
+.llm-pareto { margin-top: 16px; padding: 20px; border: 1px solid var(--llm-border); border-radius: 14px; background: #fff; box-shadow: 0 1px 2px rgba(16, 24, 40, .03); }
+.llm-chart-heading { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.llm-chart-heading h2, .llm-pareto-h2 { margin: 0; color: var(--llm-text); font-size: 1.125rem; line-height: 1.35; }
+.llm-chart-heading p, .llm-pareto-sub { margin: 5px 0 0; color: var(--llm-muted); font-size: .875rem; line-height: 1.55; }
+#llm-chart-expand { flex: 0 0 auto; min-height: 44px; padding: 0 12px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; color: #344054; font: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer; }
+#llm-chart-expand:hover { border-color: #a9c4f7; color: var(--llm-blue); }
+/* 三个折叠面板用 flex 而不是 grid：展开时要把那一张换成整行宽度（见下方媒体查询），
+   flex 的换行语义天然不会重叠、也不会生成隐式轨道；grid 在「两张同时展开」时会撞进同一格。
+   align-items: start 也必须留着：默认 stretch 会把折叠项拉到与展开项等高，变成空白盒子。 */
+.llm-chart-info-grid { display: flex; flex-wrap: wrap; align-items: start; gap: 12px; margin-top: 14px; }
+/* 两段说明文字常显（各占一半），模型列表单独一行整行宽。
+   理由：三个面板的内容量差一个数量级（93 字 / 53 项 / 94 字），塞进三个等宽可折叠列，
+   必然二选一地难看 —— 要么展开项把行撑高、另两张下方留白（实测 372px），要么整条改成
+   堆叠、点了第三张它跳到最下面、文字还拉成整行宽。那两段加起来不到 200 字，不值得藏。 */
+.llm-chart-info-grid > .llm-chart-note { flex: 1 1 calc((100% - 12px) / 2); min-width: 0; }
+.llm-chart-info-grid > .llm-chart-list-details { flex: 1 1 100%; }
+.llm-pareto.is-expanded .llm-chart-info-grid { display: none; }
+/* 列表展开时它本来就是整行宽，所以不需要 :has() 去改版式；只把列表本体铺成多列。 */
+@media (min-width: 601px) {
+    .llm-chart-info-grid > .llm-chart-list-details[open] .llm-pareto-list { grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); column-gap: 26px; }
+}
+.llm-chart-note, .llm-chart-list-details, details.llm-method-note { border: 1px solid var(--llm-border); border-radius: 10px; background: #fff; color: #667085; font-size: .8125rem; }
+/* 常显卡片的标题：与折叠面板的 summary 同高同款，视觉上仍是同一排「标签条」 */
+.llm-chart-note-title { display: flex; min-height: 44px; align-items: center; margin: 0; padding: 0 14px; color: #475467; font-size: .8125rem; font-weight: 600; }
+.llm-chart-list-details summary, details.llm-method-note summary { display: flex; min-height: 44px; align-items: center; gap: 6px; padding: 0 14px; cursor: pointer; color: #475467; font-weight: 600; list-style: none; }
+.llm-chart-list-details summary::-webkit-details-marker, details.llm-method-note summary::-webkit-details-marker { display: none; }
+.llm-chart-list-details summary::after, details.llm-method-note summary::after { content: ''; margin-left: auto; width: 7px; height: 7px; border-right: 1.5px solid #98a2b3; border-bottom: 1.5px solid #98a2b3; transform: rotate(45deg); transition: transform .15s ease; }
+.llm-chart-list-details[open] summary::after, details.llm-method-note[open] summary::after { transform: rotate(225deg); }
+.llm-chart-note > :not(.llm-chart-note-title), .llm-chart-list-details > :not(summary), details.llm-method-note > :not(summary) { margin: 0 14px 12px; }
+.llm-chart-note p { margin: 0 0 10px; line-height: 1.6; }
+.llm-chart-main { min-width: 0; }
+.llm-pareto-scroll { overflow: hidden; border: 0; border-radius: 0; background: #fff; touch-action: pan-y; }
+.llm-pareto-scroll.is-touch-exploring { touch-action: none; }
+.llm-touch-hint { display: none; margin: 0 0 8px; color: #667085; font-size: .75rem; line-height: 1.5; }
+@media (pointer: coarse), (max-width: 600px) { .llm-touch-hint { display: block; } }
+@media (pointer: fine) and (min-width: 601px) { [data-chart-touch] { display: none; } }
+.llm-pareto-svg { display: block; width: 100%; height: auto; min-width: 0; }
+.llm-pareto-svg:focus-visible { outline: 3px solid rgba(37, 99, 235, .35); outline-offset: 3px; }
+.llm-axis-caption { margin: 8px 2px 0; color: #667085; font-size: .75rem; line-height: 1.45; text-align: center; }
+.llm-chart-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 12px; margin: 0 0 8px; background: #fff; color: #667085; font-size: .75rem; }
+.llm-chart-axis, .llm-chart-zoom-buttons { display: inline-flex; align-items: center; gap: 5px; }
+.llm-chart-axis { font-weight: 600; }
+.llm-chart-controls select, .llm-chart-controls button { min-height: 32px; border: 1px solid #d0d5dd; border-radius: 6px; background: #fff; color: #344054; font: inherit; font-weight: 600; cursor: pointer; }
+.llm-chart-controls select { padding: 0 23px 0 7px; }
+.llm-chart-zoom-buttons { gap: 4px; }
+.llm-chart-zoom-buttons button { min-width: 32px; padding: 0 8px; }
+.llm-chart-zoom-buttons button:last-child { min-width: auto; }
+.llm-chart-controls button:hover, .llm-chart-controls select:hover { border-color: #98a2b3; color: var(--llm-blue); }
+.llm-chart-status { flex: 1 1 260px; margin: 0 0 0 auto; color: #667085; font-variant-numeric: tabular-nums; text-align: right; }
+.llm-chart-status strong { margin-right: 4px; color: #475467; }
+.llm-chart-status span, .llm-chart-status small { display: block; margin-top: 2px; font-size: .6875rem; }
+.llm-chart-status small { color: #8a5c12; }
+.llm-pareto-grid { stroke: #e5eaf0; stroke-width: 1; }
+.llm-pareto-tick, .llm-pareto-axis { fill: #667085; font-size: 11px; }
+.llm-pareto-line { fill: none; stroke: var(--llm-green); stroke-width: 2; stroke-linejoin: round; }
+.llm-pareto-pt { cursor: pointer; }
+.llm-pareto-pt[role="button"]:focus-visible { outline: none; }
+.llm-pareto-pt[role="button"]:focus-visible .llm-point-bg { stroke: var(--llm-blue); stroke-width: 3; }
+.llm-point-bg, .llm-pareto-pt > circle { fill: #fff; stroke: #cbd5e1; stroke-width: 1.5; }
+.llm-pareto-pt.is-front .llm-point-bg, .llm-pareto-pt.is-front > circle { stroke: var(--llm-green); stroke-width: 2.25; }
+.llm-pareto-pt.is-muted { opacity: .34; pointer-events: none; }
+.llm-pareto-pt.is-selected .llm-point-bg, .llm-pareto-pt.is-selected > circle { stroke: var(--llm-blue); stroke-width: 3; }
+.llm-point-icon { pointer-events: none; }
+.llm-point-letter { fill: #475467; font-size: 11px; font-weight: 700; pointer-events: none; }
+/* 推理档位的竖线/圆点样式已删除：31 条灰尾巴挂在气泡上，读起来像「漏了一滴」而不是
+   「一个区间」，而且正好糊在绿线（这张图的主信息）旁边。档位区间现在只在悬浮说明里，
+   另有「按档位」表格与模型详情页可以看逐档明细。 */
+.llm-pareto-label { fill: #344054; font-size: 10px; }
+/* 用户明确在找 / 正在看的那个模型：标注是强制加的（不吃标签预算），加粗以示区别 */
+.llm-pareto-label.is-forced { fill: #101828; font-weight: 700; }
+.llm-pareto-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0; color: #667085; font-size: .75rem; }
+.llm-pareto-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.llm-pareto-legend i { width: 8px; height: 8px; border: 1px solid #cbd5e1; border-radius: 50%; background: #fff; }
+.llm-pareto-legend .is-front i { border-color: var(--llm-green); background: var(--llm-green-soft); }
+.llm-chart-detail { min-height: 0; }
+.llm-detail-title { display: flex; align-items: center; gap: 10px; margin: 10px 0 4px; color: var(--llm-text); font-size: .875rem; }
+.llm-detail-title small { display: block; margin-top: 2px; color: var(--llm-muted); font-size: .75rem; font-weight: 400; }
+.llm-detail-close { margin-left: auto; }
+.llm-detail-metrics, .llm-detail-options { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; color: var(--llm-muted); font-size: .75rem; }
+.llm-detail-metrics > * { min-width: 0; margin: 0; padding: 6px 8px; border: 1px solid #edf0f3; border-radius: 6px; background: #fff; }
+.llm-detail-metrics dt { color: #667085; font-weight: 500; }
+.llm-detail-metrics dd { margin: 0; color: #344054; font-weight: 650; }
+.llm-detail-link, .llm-detail-options a { display: inline-flex; align-items: center; min-height: 44px; color: var(--llm-blue); font-weight: 600; text-decoration: none; }
+.llm-detail-options button { min-height: 44px; max-width: 100%; padding: 7px 10px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; color: #344054; font: inherit; font-size: .8125rem; font-weight: 600; line-height: 1.25; text-align: start; white-space: normal; cursor: pointer; }
+.llm-detail-options button:hover { border-color: #a9c4f7; color: var(--llm-blue); }
+.llm-detail-close { min-height: 44px; padding: 0 10px; border: 0; background: transparent; color: #475467; font: inherit; cursor: pointer; }
+.llm-chart-detail { min-height: 0; }
+.llm-pareto-list { display: grid; gap: 4px; max-height: 360px; margin: 12px 6px 4px; padding: 0; overflow-y: auto; list-style: none; }
+.llm-zoom-hint { color: #98a2b3; }
+@media (max-width: 600px) { .llm-pareto-legend .llm-zoom-hint { display: none; } }
+.llm-pareto-row { margin: 0; }
+.llm-chart-select { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; width: 100%; min-height: 44px; align-items: center; gap: 8px; padding: 7px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.llm-chart-select > .llm-pareto-name:first-child { grid-column: 1 / span 2; }
+.llm-chart-select:hover, .llm-chart-select.is-selected { border-color: #dbe5f7; background: #f8fbff; }
+.llm-chart-select .llm-org-icon { width: 22px; height: 22px; }
+.llm-pareto-name { overflow: hidden; color: #344054; font-size: .8125rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.llm-pareto-name small.llm-front-tag { display: block; width: max-content; max-width: 100%; overflow: hidden; margin: 3px 0 0; text-overflow: ellipsis; white-space: nowrap; }
+.llm-pareto-mval { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; color: #667085; font-size: .75rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.llm-front-tag { display: inline-flex; margin-left: 4px; padding: 2px 5px; border-radius: 4px; background: var(--llm-green-soft); color: var(--llm-green); font-size: .625rem; font-weight: 700; vertical-align: middle; }
+/* 气泡比例尺（气泡大小＝输出速度）。刻意用弱化配色：它是读图辅助，不该和「价格评分前沿」
+   那个语义色标抢注意力。 */
+.llm-bubble-tag { display: inline-flex; align-items: baseline; gap: 4px; margin-left: 10px; padding: 2px 5px; border-radius: 4px; background: #f2f4f7; color: #667085; font-size: .625rem; font-weight: 600; vertical-align: middle; }
+.llm-bubble-tag small { color: #98a2b3; font-size: inherit; font-variant-numeric: tabular-nums; }
+.llm-pareto-note { margin: 16px 0 0; color: var(--llm-muted); font-size: .75rem; line-height: 1.55; }
+
+.llm-section { margin-top: 42px; }
+.llm-section h2 { margin: 0; color: var(--llm-text); font-size: 1.25rem; line-height: 1.35; }
+.llm-section-note, .llm-footnote, .llm-muted { color: var(--llm-muted); }
+.llm-legacy-note { margin: 0 0 12px; padding: 10px 12px; border: 1px solid #dbe5f7; border-radius: 9px; background: #f8fbff; color: #475467; font-size: .8125rem; line-height: 1.55; }
+.llm-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.llm-shortcuts a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid #d0d5dd; border-radius: 8px; color: #344054; font-size: .8125rem; font-weight: 600; text-decoration: none; }
+.llm-shortcuts a:hover { border-color: #a9c4f7; color: var(--llm-blue); }
+.llm-error { padding: 14px; border: 1px solid #fecdca; border-radius: 10px; background: #fffbfa; color: #b42318; }
+.llm-leaderboard-page .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* Keep the supporting content as an editorial list, rather than another set of cards. */
+.llm-section-note { max-width: 52rem; margin: 7px 0 16px; font-size: .875rem; line-height: 1.6; }
+.llm-timeline-list, .llm-source-list { margin: 0; padding: 0; list-style: none; }
+.llm-timeline-list { border-top: 1px solid var(--llm-border); }
+.llm-timeline-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto auto; align-items: center; gap: 10px; min-height: 52px; padding: 9px 0; border-bottom: 1px solid var(--llm-border); }
+.llm-timeline-list .llm-org-icon, .llm-timeline-list .llm-org-mark { grid-column: 1; grid-row: 1; width: 28px; height: 28px; }
+.llm-timeline-main { display: flex; min-width: 0; align-items: baseline; gap: 8px; }
+.llm-timeline-name { overflow: hidden; color: var(--llm-text); font-size: .9375rem; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.llm-timeline-date, .llm-timeline-org { flex: 0 0 auto; color: var(--llm-muted); font-size: .75rem; }
+.llm-timeline-price { color: #344054; font-size: .8125rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.llm-timeline-list .llm-badge { justify-self: end; }
+.llm-source-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; max-width: 52rem; border-top: 1px solid var(--llm-border); }
+.llm-source-list li { display: flex; align-items: center; gap: 10px; min-height: 58px; border-bottom: 1px solid var(--llm-border); }
+.llm-source-logo { flex: 0 0 28px; width: 28px; height: 28px; border-radius: 5px; object-fit: contain; }
+.llm-source-list span { display: grid; gap: 2px; }
+.llm-source-name { color: var(--llm-text); font-size: .875rem; }
+.llm-source-list small, .llm-source-note { color: var(--llm-muted); font-size: .8125rem; line-height: 1.55; }
+.llm-source-note { max-width: 52rem; margin: 12px 0 0; }
+.llm-faq-item { max-width: 52rem; padding: 17px 0; border-bottom: 1px solid var(--llm-border); }
+.llm-faq-item h3 { margin: 0; color: var(--llm-text); font-size: .9375rem; line-height: 1.45; }
+.llm-faq-item p { margin: 6px 0 0; color: var(--llm-muted); font-size: .875rem; line-height: 1.65; }
+
+/* The page uses white surfaces; color indicates data state, not container grouping. */
+.llm-leaderboard-page { --llm-bg: #fff; --llm-blue-soft: #fff; --llm-green-soft: #fff; }
+.llm-toolbar, #llm-table-wrap, .llm-pareto { box-shadow: none; }
+#llm-views { border: 0; border-bottom: 1px solid var(--llm-border); background: #fff; }
+a.llm-view-btn.is-active { border-color: #98a2b3; box-shadow: none; color: #344054; }
+.llm-table thead th, .llm-table tbody tr:hover { background: #fff; }
+.llm-legacy-note { border-color: var(--llm-border); background: #fff; }
+.llm-chart-select:hover, .llm-chart-select.is-selected { border-color: #98a2b3; background: #fff; }
+.llm-front-tag, .llm-pareto-legend .is-front i { background: #fff; }
+
+@media (max-width: 600px) {
+    .llm-section { margin-top: 34px; }
+    .llm-section h2 { font-size: 1.125rem; }
+    .llm-timeline-list li { grid-template-columns: 28px minmax(0, 1fr) auto; gap: 8px; min-height: 58px; }
+    .llm-timeline-main { display: grid; gap: 2px; }
+    .llm-timeline-name { grid-column: 1 / -1; font-size: .875rem; }
+    .llm-timeline-date { grid-column: 1; grid-row: 2; }
+    .llm-timeline-org { grid-column: 2; grid-row: 2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .llm-timeline-list .llm-badge { display: none; }
+    .llm-timeline-price { grid-column: 3; grid-row: 1; align-self: start; }
+}
+
+@media (max-width: 820px) {
+    .llm-leaderboard-page .page-shell { padding: 18px 16px 56px; }
+    .llm-toolbar { align-items: stretch; gap: 8px; }
+    #llm-views { width: 100%; }
+    a.llm-view-btn { flex: 0 0 auto; }
+    #llm-filters.llm-filters { flex: 1 1 100%; justify-content: stretch; flex-wrap: wrap; }
+    .llm-search-wrap { flex: 1 1 100%; width: 100%; max-width: none; }
+    #llm-search, .llm-select-wrap select { font-size: 16px; }
+    .llm-select-wrap { flex: 1 1 calc(50% - 4px); align-self: end; }
+    .llm-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .llm-pareto { padding: 15px; }
+    .llm-chart-controls { gap: 6px 8px; margin-bottom: 6px; }
+    .llm-chart-axis > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    .llm-chart-controls select, .llm-chart-controls button { min-height: 36px; }
+    .llm-chart-status { flex-basis: 100%; margin: 0; text-align: left; }
+    .llm-chart-heading { gap: 8px; }
+    .llm-chart-heading h2 { font-size: 1rem; }
+    /* 窄屏一律纵向堆叠：两段说明和列表条都占整行。选择器要写到具体类上，
+       `.llm-chart-info-grid > *` 的特异性低于上面那两条按类写的规则，压不住。 */
+    .llm-chart-info-grid > .llm-chart-note, .llm-chart-info-grid > .llm-chart-list-details { flex-basis: 100%; }
+    .llm-pareto-list { max-height: none; overflow: visible; }
+
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .llm-table th, .llm-table td { padding: 10px 6px; font-size: .75rem; }
+    .llm-table .llm-col-model { width: 32%; }
+    .llm-table .llm-model-name { white-space: normal; overflow-wrap: anywhere; }
+}
+
+.llm-mobile-metrics { display: none; }
+
+/* ---------------------------------------------------------------------------
+   行内明细（窄屏 / 触屏按需展开）。
+   精确上架日期、Arena 95% 区间原文、票数、名次变动与档位说明原先只挂在 title 上，而 title
+   在触屏上永远不出现。桌面鼠标用户仍有悬浮说明，所以按钮默认不显示：桌面一个像素都不占，
+   也不会出现「每行一个 ⓘ」的噪音（本轮减法要的就是把这类碎标从行里拿掉）。
+   --------------------------------------------------------------------------- */
+.llm-row-more { display: none; }
+.llm-detail-row { display: none; }
+.llm-detail-row td { padding: 10px 12px; border-top: 1px dashed var(--llm-border); background: #fafbfc; color: #344054; font-size: .8125rem; line-height: 1.5; }
+.llm-detail-item { display: inline-flex; align-items: baseline; gap: 6px; margin: 0 14px 6px 0; }
+.llm-detail-label { color: #7c8798; font-size: .75rem; }
+.llm-detail-value { color: var(--llm-text); font-weight: 650; font-variant-numeric: tabular-nums; }
+.llm-detail-note { display: block; margin-top: 4px; color: #667085; font-size: .75rem; }
+
+/* 触屏 / 窄屏才给按钮：屏幕上没有 hover，展开是拿到这些细节的唯一途径 */
+@media (pointer: coarse), (hover: none), (max-width: 600px) {
+    .llm-table .llm-row-more {
+        display: inline-grid;
+        width: 16px;
+        height: 16px;
+        margin: 4px 0 0;
+        padding: 0;
+        place-items: center;
+        border: 1px solid #cbd5e1;
+        border-radius: 50%;
+        background: #fff;
+        color: #667085;
+        cursor: pointer;
+        font: 700 9.5px/1 Arial, sans-serif;
+    }
+    .llm-table .llm-row-more[aria-expanded="true"] { border-color: var(--llm-blue); background: var(--llm-blue); color: #fff; }
+    /* 展开的明细行：宽屏（触屏平板）上仍是一行 table-row，靠 colspan 占满整行 */
+    .llm-table tr.llm-detail-row:not([hidden]) { display: table-row; }
+}
+.llm-table .llm-row-more:focus-visible { border-color: var(--llm-blue); box-shadow: 0 0 0 3px rgba(37, 99, 235, .16); outline: none; }
+
+@media (max-width: 600px) {
+    #llm-table-wrap { overflow: visible; border: 0; border-top: 1px solid var(--llm-border); border-radius: 0; background: #fff; box-shadow: none; }
+    .llm-table, .llm-table tbody, .llm-table tr, .llm-table td { display: block; width: 100%; }
+    .llm-table thead { display: none; }
+    .llm-table tbody { display: grid; gap: 0; }
+    .llm-table tbody tr { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 0 10px; padding: 12px 0; border: 0; border-bottom: 1px solid var(--llm-border); border-radius: 0; background: transparent; box-shadow: none; }
+    .llm-table tbody tr:last-child { border-bottom: 0; }
+    .llm-table td { min-height: 0; padding: 0; border: 0; }
+    .llm-table .llm-col-rank { grid-column: 1; grid-row: 1; width: auto; padding-top: 2px; }
+    /* 前三名保留金银铜，其余保持小灰圆：移动端也不放弃名次这个扫读锚点 */
+    .llm-table .llm-rank-dot { min-width: 24px; height: 24px; font-size: .8125rem; }
+    .llm-table .llm-rank-move { display: block; margin: 2px 0 0; }
+    .llm-table .llm-col-model { grid-column: 2; grid-row: 1; width: auto; min-width: 0; }
+    .llm-table .llm-model-cell { align-items: flex-start; gap: 8px; }
+    .llm-table .llm-logo { flex-basis: 26px; width: 26px; height: 26px; border-radius: 6px; background: #fff; }
+    .llm-table .llm-logo .llm-org-icon, .llm-table .llm-org-icon, .llm-table .llm-org-mark { width: 26px; height: 26px; }
+    .llm-table .llm-model-name { white-space: normal; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.35; }
+    .llm-table .llm-model-name a { display: inline; min-height: 0; }
+    /* 桌面专项列在移动端收进 .llm-mobile-metrics 面板，避免出现「有数字没标签」的孤立数值 */
+    .llm-table .llm-col-arena, .llm-table .llm-col-intel, .llm-table .llm-col-speed, .llm-table .llm-col-ttft,
+    .llm-table .llm-col-pin, .llm-table .llm-col-pout, .llm-table .llm-col-value, .llm-table .llm-col-date { display: none; }
+    /* 主指标落到卡片右上角（字段名 + 加重数值 + 小对比条）：先在卡片一级读出强弱，再看下面的标签面板 */
+    .llm-table .llm-col-arena.is-primary, .llm-table .llm-col-intel.is-primary { display: block; grid-column: 3; grid-row: 1; min-width: 64px; align-self: center; }
+    .llm-table .llm-primary { display: block; text-align: right; }
+    .llm-table .llm-primary-label { display: block; color: #7c8798; font-size: 10.5px; line-height: 1.15; }
+    .llm-table .llm-primary-value { display: block; margin-top: 2px; font-size: 1.0625rem; line-height: 1.15; }
+    .llm-table .llm-meter { width: 54px; max-width: 100%; height: 5px; margin: 4px 0 0 auto; }
+    .llm-table .llm-mobile-metrics {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        align-items: end;
+        gap: 8px 10px;
+        margin-top: 10px;
+        padding: 9px 11px;
+        border: 1px solid #edf1f5;
+        border-radius: 10px;
+        background: #fafbfc;
+    }
+    .llm-mobile-metric { display: flex; min-width: 0; flex-direction: column; gap: 2px; }
+    .llm-mobile-metric-label { color: #7c8798; font-size: 10.5px; line-height: 1.15; }
+    .llm-mobile-metric-value { color: var(--llm-text); font-size: .8125rem; font-weight: 650; line-height: 1.2; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .llm-mobile-metric-value.is-empty { color: #98a2b3; font-weight: 400; }
+    .llm-table .llm-model-text { display: block; }
+    .llm-table .llm-model-org { display: inline; gap: 0; margin-top: 0; white-space: normal; font-size: .75rem; line-height: 1.45; }
+    .llm-table .llm-model-org .llm-badge { min-height: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--llm-muted); font-size: inherit; font-weight: 400; line-height: inherit; }
+    .llm-table .llm-model-org .llm-badge::before { content: '·'; margin-right: 5px; }
+    .llm-table .llm-effort-badge { min-height: 16px; padding: 0 5px; font-size: 10px; }
+    /* 分享按钮并进筛选项那一行，别在工具栏里单独占一行 */
+    #llm-filters.llm-filters { flex: 1 1 calc(100% - 54px); }
+    /* 两个下拉按内容宽度分配：放不下就各自独占一行，避免 en/ja/ko 长选项被截断 */
+    .llm-select-wrap { flex: 1 1 auto; }
+    #llm-share-open { align-self: flex-end; }
+    /* 展开的明细行：卡片布局里是「模型行」下面的一条，和它同宽、同一列节奏 */
+    .llm-table tbody tr.llm-detail-row:not([hidden]) { display: block; padding: 2px 0 12px; border-bottom: 1px solid var(--llm-border); background: #fafbfc; }
+    .llm-table tbody tr.llm-detail-row:not([hidden]) > td { display: grid; grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); gap: 6px 12px; }
+    .llm-table tbody tr.llm-detail-row .llm-detail-item { justify-content: space-between; margin: 0; }
+    .llm-table tbody tr.llm-detail-row .llm-detail-note { grid-column: 1 / -1; margin: 0; }
+    .llm-table .llm-row-more { margin-top: 3px; }
+}
+
+@media (max-width: 359px) {
+    .llm-table .llm-mobile-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    #llm-filters.llm-filters { flex: 1 1 100%; }
+    #llm-share-open { align-self: flex-start; margin-left: auto; }
+}
+
+@media (max-width: 430px) {
+    .llm-leaderboard-page .page-shell { padding-inline: 12px; }
+    a.llm-view-btn { font-size: .75rem; }
+    a.llm-view-btn svg { display: none; }
+    .llm-summary-grid { gap: 8px; }
+    .llm-summary-card { min-height: 100px; padding: 12px; }
+    .llm-chart-heading { align-items: center; }
+    #llm-chart-expand { width: auto; }
+}
+
+@media (max-width: 600px) {
+    .llm-leaderboard-page .page-shell { padding-top: 12px; }
+    .llm-hero { margin-bottom: 12px; }
+    .llm-leaderboard-page .page-title p { margin-top: 8px; font-size: 13px; line-height: 1.5; }
+    .llm-meta { gap: 0 9px; margin-top: 8px; font-size: 12px; }
+    .llm-meta-item + .llm-meta-item::before { margin-right: 9px; }
+    .llm-meta a.llm-chip-link { min-height: 40px; padding: 0; border: 0; border-radius: 0; background: #fff; color: #475467; font-size: inherit; }
+    .llm-status-line { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 2px; color: #8a5c12; font-size: 12px; }
+    .llm-status-line .llm-chip { min-height: 0; padding: 0; border: 0; background: #fff; color: inherit; font-size: inherit; }
+    a.llm-view-btn { min-height: 44px; font-size: 13px; }
+    .llm-toolbar { gap: 10px; margin-bottom: 0; padding-bottom: 12px; }
+    .llm-select-wrap { min-width: 0; }
+    .llm-select-wrap > span { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+    .llm-results-meta { flex-wrap: wrap; gap: 3px 10px; margin: 12px 0 0; padding-bottom: 10px; font-size: 12px; }
+    .llm-pareto { margin-top: 0; padding: 12px 0 0; border: 0; border-radius: 0; }
+    .llm-chart-heading { margin-bottom: 8px; }
+    #llm-chart-expand { display: none; }
+    .llm-detail-title { align-items: flex-start; }
+    .llm-detail-title > div { min-width: 0; overflow-wrap: anywhere; }
+    .llm-detail-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+    .llm-detail-metrics > div { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 8px 0; border: 0; border-bottom: 1px solid var(--llm-border); border-radius: 0; }
+    .llm-detail-metrics dd { white-space: nowrap; }
+    .llm-section { margin-top: 28px; }
+    .llm-section-note { margin-bottom: 12px; font-size: 13px; }
+    .llm-timeline-name { white-space: normal; overflow-wrap: anywhere; }
+    .llm-timeline-list li { padding-block: 12px; }
+    .llm-source-logo { flex-basis: 20px; width: 20px; height: 20px; border-radius: 0; }
+    .llm-source-list { grid-template-columns: minmax(0, 1fr); }
+    .llm-source-list li { padding-block: 10px; }
+    .llm-shortcuts { gap: 0 16px; }
+    .llm-shortcuts a { padding: 0; border: 0; border-radius: 0; font-weight: 400; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .llm-leaderboard-page *, .llm-leaderboard-page *::before, .llm-leaderboard-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+a.llm-chip-link { background: var(--llm-blue-soft); color: #1d4ed8; cursor: pointer; text-decoration: none; }
+a.llm-chip-link:hover { background: #dbeafe; }
+
+/* Supporting content stays editorial: hierarchy comes from spacing and rules, not cards. */
+.llm-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 24px 0 10px;
+    border-top: 1px solid var(--llm-border);
+    border-bottom: 1px solid var(--llm-border);
+}
+.llm-summary-card {
+    min-width: 0;
+    min-height: 0;
+    padding: 13px 18px 13px 0;
+    border: 0;
+    border-right: 1px solid var(--llm-border);
+    border-radius: 0;
+    background: transparent;
+}
+.llm-summary-card + .llm-summary-card { padding-left: 18px; }
+.llm-summary-card:last-child { border-right: 0; }
+.llm-summary-card:hover { border-color: var(--llm-border); background: transparent; box-shadow: none; }
+.llm-summary-label, .llm-summary-sub { color: var(--llm-muted); font-size: .75rem; line-height: 1.4; }
+.llm-summary-name { margin: 5px 0 2px; color: var(--llm-text); font-size: .9375rem; }
+.llm-summary-card:hover .llm-summary-name { color: var(--llm-blue); }
+
+.llm-shortcuts { gap: 8px 24px; margin: 12px 0 0; }
+.llm-shortcuts a {
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #475467;
+    font-size: .8125rem;
+    font-weight: 500;
+}
+.llm-shortcuts a::after { margin-left: 5px; color: #98a2b3; content: '→'; }
+.llm-shortcuts a:hover { border: 0; color: var(--llm-blue); }
+
+.llm-support-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 0 32px;
+    margin-top: 40px;
+}
+.llm-support-grid.is-single { grid-template-columns: minmax(0, 760px); }
+.llm-support-section { min-width: 0; margin-top: 0; }
+.llm-support-section + .llm-support-section { padding-left: 32px; border-left: 1px solid var(--llm-border); }
+.llm-support-section h2 { font-size: 1.125rem; }
+.llm-support-list { margin: 14px 0 0; padding: 0; border-top: 1px solid var(--llm-border); list-style: none; }
+.llm-support-list li { border-bottom: 1px solid var(--llm-border); }
+.llm-support-model {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    color: inherit;
+    text-decoration: none;
+}
+.llm-support-model:hover .llm-support-name { color: var(--llm-blue); }
+.llm-support-icon-wrap {
+    display: grid;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #f2f4f7;
+}
+.llm-support-icon, .llm-support-mark { grid-area: 1 / 1; width: 28px; height: 28px; object-fit: contain; }
+.llm-support-mark { display: grid; place-items: center; color: #475467; font-size: .75rem; font-weight: 700; }
+.llm-support-copy { display: grid; min-width: 0; gap: 3px; }
+.llm-support-name { overflow: hidden; color: var(--llm-text); font-size: .9375rem; font-weight: 650; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.llm-support-meta { overflow: hidden; color: var(--llm-muted); font-size: .75rem; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+
+#llm-sources .llm-source-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 18px;
+    max-width: none;
+    border-top: 1px solid var(--llm-border);
+}
+#llm-sources .llm-source-list li { min-width: 0; min-height: 0; }
+.llm-source-link { display: flex; min-width: 0; align-items: center; gap: 10px; min-height: 60px; color: inherit; text-decoration: none; }
+.llm-source-link:hover .llm-source-name { color: var(--llm-blue); }
+.llm-source-logo { flex: 0 0 24px; width: 24px; height: 24px; border-radius: 4px; object-fit: contain; }
+.llm-source-link > span { display: grid; min-width: 0; gap: 2px; }
+.llm-source-name { overflow: hidden; color: var(--llm-text); font-size: .875rem; text-overflow: ellipsis; white-space: nowrap; }
+.llm-source-link small { overflow: hidden; color: var(--llm-muted); font-size: .75rem; line-height: 1.45; text-overflow: ellipsis; white-space: nowrap; }
+
+#llm-faq .llm-faq-item { max-width: none; margin: 0; padding: 0; border: 0; border-bottom: 1px solid var(--llm-border); }
+#llm-faq .llm-faq-item:first-of-type { border-top: 1px solid var(--llm-border); }
+#llm-faq .llm-faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    color: var(--llm-text);
+    cursor: pointer;
+    font-size: .9375rem;
+    font-weight: 650;
+    line-height: 1.45;
+    list-style: none;
+}
+#llm-faq .llm-faq-item summary::-webkit-details-marker { display: none; }
+#llm-faq .llm-faq-item summary::after { flex: 0 0 auto; color: var(--llm-muted); content: '+'; font-size: 1.25rem; font-weight: 400; line-height: 1; }
+#llm-faq .llm-faq-item[open] summary::after { content: '−'; }
+#llm-faq .llm-faq-item summary:focus-visible { outline: 2px solid var(--llm-blue); outline-offset: 3px; }
+.llm-faq-answer { max-width: 52rem; padding: 0 36px 16px 0; }
+#llm-faq .llm-faq-answer p { margin: 0; color: var(--llm-muted); font-size: .875rem; line-height: 1.65; }
+
+@media (max-width: 720px) {
+    .llm-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 20px; }
+    .llm-summary-card { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--llm-border); border-right: 0; }
+    .llm-summary-card + .llm-summary-card { padding-left: 12px; }
+    .llm-summary-card:nth-last-child(-n + 2) { border-bottom: 0; }
+    .llm-support-grid, .llm-support-grid.is-single { display: block; margin-top: 32px; }
+    .llm-support-section + .llm-support-section { margin-top: 28px; padding-top: 28px; padding-left: 0; border-top: 1px solid var(--llm-border); border-left: 0; }
+    .llm-support-model { padding-block: 12px; }
+    #llm-sources .llm-source-list { grid-template-columns: minmax(0, 1fr); }
+    .llm-source-link { min-height: 54px; }
+    .llm-faq-answer { padding-right: 24px; }
+}
+
+@media (max-width: 430px) {
+    .llm-summary-card { font-size: .75rem; }
+    .llm-summary-name { font-size: .875rem; }
+    .llm-shortcuts { gap: 6px 16px; }
+}

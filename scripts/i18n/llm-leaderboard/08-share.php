@@ -1,0 +1,57 @@
+<?php
+/**
+ * LLM leaderboard share-poster composer copy.
+ */
+
+return [
+    'llm.ui.share_image' => ['zh-CN' => '生成分享图', 'zh-TW' => '生成分享圖', 'en-US' => 'Create share image', 'ja-JP' => '共有画像を作成', 'ko-KR' => '공유 이미지 만들기'],
+    'llm.ui.share_kicker' => ['zh-CN' => '{site} · 榜单海报', 'zh-TW' => '{site} · 排行榜海報', 'en-US' => '{site} · Leaderboard poster', 'ja-JP' => '{site} · ランキングポスター', 'ko-KR' => '{site} · 순위표 포스터'],
+    'llm.ui.share_title' => ['zh-CN' => '生成榜单分享图', 'zh-TW' => '生成排行榜分享圖', 'en-US' => 'Create a leaderboard image', 'ja-JP' => 'ランキング共有画像を作成', 'ko-KR' => '순위표 공유 이미지 만들기'],
+    'llm.ui.share_close' => ['zh-CN' => '关闭分享图设置', 'zh-TW' => '關閉分享圖設定', 'en-US' => 'Close share image settings', 'ja-JP' => '共有画像の設定を閉じる', 'ko-KR' => '공유 이미지 설정 닫기'],
+    'llm.ui.share_preview' => ['zh-CN' => '预览', 'zh-TW' => '預覽', 'en-US' => 'Preview', 'ja-JP' => 'プレビュー', 'ko-KR' => '미리보기'],
+    'llm.ui.share_settings' => ['zh-CN' => '分享图设置', 'zh-TW' => '分享圖設定', 'en-US' => 'Share image settings', 'ja-JP' => '共有画像の設定', 'ko-KR' => '공유 이미지 설정'],
+    'llm.ui.share_orientation' => ['zh-CN' => '图片版式', 'zh-TW' => '圖片版式', 'en-US' => 'Layout', 'ja-JP' => 'レイアウト', 'ko-KR' => '레이아웃'],
+    'llm.ui.share_landscape' => ['zh-CN' => '横版', 'zh-TW' => '橫版', 'en-US' => 'Landscape', 'ja-JP' => '横長', 'ko-KR' => '가로'],
+    'llm.ui.share_portrait' => ['zh-CN' => '竖版', 'zh-TW' => '豎版', 'en-US' => 'Portrait', 'ja-JP' => '縦長', 'ko-KR' => '세로'],
+    'llm.ui.share_theme' => ['zh-CN' => '图片配色', 'zh-TW' => '圖片配色', 'en-US' => 'Palette', 'ja-JP' => '配色', 'ko-KR' => '색상'],
+    'llm.ui.share_theme_light' => ['zh-CN' => '浅色', 'zh-TW' => '淺色', 'en-US' => 'Light', 'ja-JP' => 'ライト', 'ko-KR' => '라이트'],
+    'llm.ui.share_theme_dark' => ['zh-CN' => '深色', 'zh-TW' => '深色', 'en-US' => 'Dark', 'ja-JP' => 'ダーク', 'ko-KR' => '다크'],
+    'llm.ui.share_count' => ['zh-CN' => '展示数量', 'zh-TW' => '顯示數量', 'en-US' => 'Models to show', 'ja-JP' => '表示件数', 'ko-KR' => '표시할 모델 수'],
+    'llm.ui.share_highlight' => ['zh-CN' => '高亮模型', 'zh-TW' => '醒目顯示模型', 'en-US' => 'Highlight a model', 'ja-JP' => 'モデルを強調', 'ko-KR' => '강조할 모델'],
+    'llm.ui.share_highlight_none' => ['zh-CN' => '不高亮', 'zh-TW' => '不醒目顯示', 'en-US' => 'No highlight', 'ja-JP' => '強調しない', 'ko-KR' => '강조 안 함'],
+    'llm.ui.share_show_prices' => ['zh-CN' => '显示输入 / 输出价格', 'zh-TW' => '顯示輸入／輸出價格', 'en-US' => 'Show input / output prices', 'ja-JP' => '入力／出力価格を表示', 'ko-KR' => '입력 / 출력 가격 표시'],
+    'llm.ui.share_data_note' => ['zh-CN' => '数据口径说明', 'zh-TW' => '資料口徑說明', 'en-US' => 'Data note', 'ja-JP' => 'データについて', 'ko-KR' => '데이터 안내'],
+    /* 分享图实际口径（assets/js/llm-share-image.js:20-45）：只要有任一模型带智能指数就整体按指数降序，
+       并把没有指数的模型直接过滤掉；只有整份数据都没有指数时才改用 Arena 分数。 */
+    'llm.ui.share_data_note_body' => ['zh-CN' => '分享图继承当前搜索与权重筛选，但固定按智能指数降序排列（整份数据都没有指数时才改用 Arena 分数）。图片会带上快照日期与来源说明。', 'zh-TW' => '分享圖沿用目前搜尋與權重篩選，但固定按智能指數降序排列（整份資料都沒有指數時才改用 Arena 分數）。圖片會附上快照日期與資料來源。', 'en-US' => 'The image keeps the current search and weight filters, but always sorts by the intelligence index (Arena score is used only when no model in the data has an index). It includes the snapshot date and source note.', 'ja-JP' => '現在の検索とウェイトのフィルターを引き継ぎますが、並び順はインテリジェンス指数の降順で固定されます（データ全体に指数がない場合のみ Arena スコアを使用）。スナップショット日と出典も画像に含まれます。', 'ko-KR' => '현재 검색 및 웨이트 필터를 유지하지만 인텔리전스 지수 내림차순으로 고정 정렬합니다(데이터 전체에 지수가 없을 때만 Arena 점수 사용). 스냅샷 날짜와 출처 안내가 이미지에 포함됩니다.'],
+    'llm.ui.share_footer_note' => ['zh-CN' => '生成在浏览器本地完成，不上传图片', 'zh-TW' => '在瀏覽器本機生成，不上傳圖片', 'en-US' => 'Generated locally in your browser; images are not uploaded', 'ja-JP' => 'ブラウザー内で生成。画像はアップロードされません', 'ko-KR' => '브라우저에서 로컬 생성되며 이미지는 업로드되지 않습니다'],
+    'llm.ui.share_copy' => ['zh-CN' => '复制图片', 'zh-TW' => '複製圖片', 'en-US' => 'Copy image', 'ja-JP' => '画像をコピー', 'ko-KR' => '이미지 복사'],
+    'llm.ui.share_system' => ['zh-CN' => '系统分享', 'zh-TW' => '系統分享', 'en-US' => 'Share', 'ja-JP' => '共有', 'ko-KR' => '공유'],
+    'llm.ui.share_download' => ['zh-CN' => '下载 PNG', 'zh-TW' => '下載 PNG', 'en-US' => 'Download PNG', 'ja-JP' => 'PNG をダウンロード', 'ko-KR' => 'PNG 다운로드'],
+
+    'llm.js.share_scope_filtered' => ['zh-CN' => '当前筛选范围', 'zh-TW' => '目前篩選範圍', 'en-US' => 'Current filters', 'ja-JP' => '現在のフィルター', 'ko-KR' => '현재 필터'],
+    'llm.js.share_search_scope' => ['zh-CN' => '搜索：{query}', 'zh-TW' => '搜尋：{query}', 'en-US' => 'Search: {query}', 'ja-JP' => '検索：{query}', 'ko-KR' => '검색: {query}'],
+    'llm.js.share_open_weights' => ['zh-CN' => '开放权重', 'zh-TW' => '開放權重', 'en-US' => 'Open weights', 'ja-JP' => 'オープンウェイト', 'ko-KR' => '오픈 웨이트'],
+    'llm.js.share_closed_weights' => ['zh-CN' => '闭源', 'zh-TW' => '閉源', 'en-US' => 'Closed', 'ja-JP' => 'クローズド', 'ko-KR' => '클로즈드'],
+    'llm.js.share_unknown_weights' => ['zh-CN' => '未注明', 'zh-TW' => '未註明', 'en-US' => 'Not specified', 'ja-JP' => '記載なし', 'ko-KR' => '미표기'],
+    'llm.js.share_highlight_none' => ['zh-CN' => '不高亮', 'zh-TW' => '不醒目顯示', 'en-US' => 'No highlight', 'ja-JP' => '強調しない', 'ko-KR' => '강조 안 함'],
+    'llm.js.share_poster_title' => ['zh-CN' => '大模型排行榜', 'zh-TW' => '大模型排行榜', 'en-US' => 'LLM leaderboard', 'ja-JP' => '大規模モデルランキング', 'ko-KR' => '대규모 모델 순위표'],
+    'llm.js.share_poster_score' => ['zh-CN' => '智能指数', 'zh-TW' => '智慧指數', 'en-US' => 'Intelligence Index', 'ja-JP' => '知能指数', 'ko-KR' => '지능 지수'],
+    'llm.js.share_poster_count' => ['zh-CN' => '前 {count} 名', 'zh-TW' => '前 {count} 名', 'en-US' => 'Top {count}', 'ja-JP' => '上位 {count} 件', 'ko-KR' => '상위 {count}개'],
+    'llm.js.share_poster_source' => ['zh-CN' => '评分来源：Artificial Analysis；价格来源：OpenRouter', 'zh-TW' => '評分來源：Artificial Analysis；價格來源：OpenRouter', 'en-US' => 'Scores: Artificial Analysis · Prices: OpenRouter', 'ja-JP' => 'スコア：Artificial Analysis · 価格：OpenRouter', 'ko-KR' => '점수: Artificial Analysis · 가격: OpenRouter'],
+    'llm.js.share_price_line' => ['zh-CN' => '输入 {input} · 输出 {output}', 'zh-TW' => '輸入 {input} · 輸出 {output}', 'en-US' => 'In {input} · Out {output}', 'ja-JP' => '入力 {input} · 出力 {output}', 'ko-KR' => '입력 {input} · 출력 {output}'],
+    'llm.js.share_low_sample' => ['zh-CN' => '低样本', 'zh-TW' => '低樣本', 'en-US' => 'Low sample', 'ja-JP' => '少数票', 'ko-KR' => '표본 적음'],
+    'llm.js.share_snapshot' => ['zh-CN' => '数据快照：{date}', 'zh-TW' => '資料快照：{date}', 'en-US' => 'Snapshot: {date}', 'ja-JP' => 'スナップショット：{date}', 'ko-KR' => '스냅샷: {date}'],
+    'llm.js.share_bar_note' => ['zh-CN' => '条形仅表示本图内相对位置，不代表百分比。', 'zh-TW' => '條形僅表示本圖內相對位置，不代表百分比。', 'en-US' => 'Bars show relative position within this image; they are not percentages.', 'ja-JP' => 'バーはこの画像内の相対位置を示すだけで、百分率ではありません。', 'ko-KR' => '막대는 이 이미지 안의 상대적 위치만 나타내며 백분율이 아닙니다.'],
+    'llm.js.share_preview_fixture' => ['zh-CN' => '本地预览使用合成样本，不代表线上排名或实时价格。', 'zh-TW' => '本機預覽使用合成樣本，不代表線上排名或即時價格。', 'en-US' => 'This local preview uses synthetic data and does not represent live rankings or prices.', 'ja-JP' => 'このローカルプレビューは合成データを使用しており、実際のランキングや価格を表しません。', 'ko-KR' => '이 로컬 미리보기는 합성 데이터를 사용하며 실제 순위나 실시간 가격을 나타내지 않습니다.'],
+    'llm.js.share_no_models' => ['zh-CN' => '当前筛选范围没有可分享的已评分模型', 'zh-TW' => '目前篩選範圍沒有可分享的已評分模型', 'en-US' => 'No scored models can be shared in the current filters', 'ja-JP' => '現在のフィルターに共有できる採点済みモデルはありません', 'ko-KR' => '현재 필터에서 공유할 수 있는 평가 완료 모델이 없습니다'],
+    'llm.js.share_count_value' => ['zh-CN' => '{count} / {total}', 'zh-TW' => '{count} / {total}', 'en-US' => '{count} / {total}', 'ja-JP' => '{count} / {total}', 'ko-KR' => '{count} / {total}'],
+    'llm.js.share_scope_count' => ['zh-CN' => '将导出 {count} 个模型（筛选范围共 {total} 个）', 'zh-TW' => '將匯出 {count} 個模型（篩選範圍共 {total} 個）', 'en-US' => '{count} models will be exported ({total} match the filters)', 'ja-JP' => '{count} 件を出力します（フィルター対象は {total} 件）', 'ko-KR' => '{count}개 모델을 내보냅니다 (필터 결과 {total}개）'],
+    'llm.js.share_generating' => ['zh-CN' => '正在生成图片…', 'zh-TW' => '正在生成圖片…', 'en-US' => 'Generating image…', 'ja-JP' => '画像を生成中…', 'ko-KR' => '이미지 생성 중…'],
+    'llm.js.share_downloaded' => ['zh-CN' => '图片已下载', 'zh-TW' => '圖片已下載', 'en-US' => 'Image downloaded', 'ja-JP' => '画像をダウンロードしました', 'ko-KR' => '이미지를 다운로드했습니다'],
+    'llm.js.share_export_error' => ['zh-CN' => '生成图片失败，请重试。', 'zh-TW' => '生成圖片失敗，請重試。', 'en-US' => 'Could not generate the image. Please try again.', 'ja-JP' => '画像を生成できませんでした。もう一度お試しください。', 'ko-KR' => '이미지를 만들 수 없습니다. 다시 시도해 주세요.'],
+    'llm.js.share_copied' => ['zh-CN' => '图片已复制到剪贴板', 'zh-TW' => '圖片已複製到剪貼簿', 'en-US' => 'Image copied to clipboard', 'ja-JP' => '画像をクリップボードにコピーしました', 'ko-KR' => '이미지를 클립보드에 복사했습니다'],
+    'llm.js.share_copy_error' => ['zh-CN' => '当前浏览器不支持复制图片，请改用下载。', 'zh-TW' => '目前瀏覽器不支援複製圖片，請改用下載。', 'en-US' => 'This browser cannot copy images. Try downloading instead.', 'ja-JP' => 'このブラウザーは画像のコピーに対応していません。ダウンロードをお試しください。', 'ko-KR' => '이 브라우저는 이미지 복사를 지원하지 않습니다. 다운로드를 사용해 주세요.'],
+    'llm.js.share_system_text' => ['zh-CN' => '{site} 大模型排行榜', 'zh-TW' => '{site} 大模型排行榜', 'en-US' => '{site} LLM leaderboard', 'ja-JP' => '{site} 大規模モデルランキング', 'ko-KR' => '{site} 대규모 모델 순위표'],
+    'llm.js.share_shared' => ['zh-CN' => '已打开系统分享', 'zh-TW' => '已開啟系統分享', 'en-US' => 'System share opened', 'ja-JP' => 'システム共有を開きました', 'ko-KR' => '시스템 공유를 열었습니다'],
+];

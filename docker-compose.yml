@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      SITE_URL: ${SITE_URL:-http://localhost:8080}
+      SITE_NAME: ${SITE_NAME:-Benchmark Leaderboard}
+      # Optional upstream credentials for scripts/sync-llm-leaderboard.php
+      LLM_OPENROUTER_KEY: ${LLM_OPENROUTER_KEY:-}
+      LLM_HF_TOKEN: ${LLM_HF_TOKEN:-}
+      LLM_AA_API_KEY: ${LLM_AA_API_KEY:-}

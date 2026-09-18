@@ -22,6 +22,7 @@ raw-*.json
 !/**/.env.example
 /config/*.php
 !/config/*.example.php
+!/config/llm_model_aliases.php
 /config.php
 /.htaccess
 *.pem
