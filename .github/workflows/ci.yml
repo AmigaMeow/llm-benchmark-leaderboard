@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Syntax check (php -l)
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            php -l "$f" >/dev/null 2>&1 || { echo "::error file=$f::PHP syntax error"; php -l "$f"; fail=1; }
+          done < <(find . -name '*.php' -not -path './vendor/*')
+          exit $fail
+
+      - name: Guard — no live secrets committed
+        run: |
+          if grep -rnE '(sk-[A-Za-z0-9]{24}|ghp_[A-Za-z0-9]{20}|AKIA[0-9A-Z]{16}|BEGIN [A-Z ]*PRIVATE KEY)' \
+               --include='*.php' --include='*.js' --include='*.json' --include='*.yml' . ; then
+            echo "::error::potential secret detected"; exit 1
+          fi
+
