@@ -1,0 +1,7 @@
+[
+  {"id":"multi","display_name":"Multi","org":"Anthropic","arena_score":1500,"arena_ci_low":1489.5,"arena_ci_high":1510.5,"arena_votes":15000,"aa_intelligence":53.4,"aa_coding":81.6,"aa_variant":"max","aa_variants":[{"label":"max","intel":53.4,"coding":81.6,"speed":70,"ttft":1.2},{"label":"xhigh","intel":52,"coding":80,"speed":60,"ttft":0.9},{"label":"high","intel":50,"coding":78,"speed":55,"ttft":0.5}],"price_out":10,"price_in":2,"listed_at":100,"open_weights":false},
+  {"id":"solo","display_name":"Solo","org":"Example","arena_score":1490,"aa_intelligence":51,"aa_variant":"max","aa_variants":[{"label":"max","intel":51,"coding":76,"speed":40,"ttft":0.4}],"price_out":5,"price_in":1,"listed_at":90,"open_weights":true},
+  {"id":"plain","display_name":"Plain","org":"Example","arena_score":1480,"arena_votes":25000,"price_out":3,"price_in":0.5,"listed_at":80,"open_weights":false},
+  {"id":"dirty","display_name":"Dirty","org":"Example","arena_score":1470,"aa_intelligence":40,"aa_variant":"max","aa_variants":[{"label":"max","intel":40,"coding":"NaN"},{"label":"low","intel":null,"coding":30},{"label":"bogus","intel":99,"coding":99},{"label":"medium","intel":"45.5","coding":null}],"price_out":8,"price_in":1,"listed_at":70,"open_weights":null},
+  {"id":"arena_only_multi","display_name":"ArenaOnly","org":"Example","arena_score":1460,"aa_variants":[{"label":"max","intel":30}],"price_out":0,"price_in":0,"listed_at":60,"open_weights":true}
+]

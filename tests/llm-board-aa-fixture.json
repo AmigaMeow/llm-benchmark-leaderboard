@@ -1,0 +1,14 @@
+[
+  {"id":"a","display_name":"Alpha","org":"OpenAI","arena_score":1500,"price_out":10,"price_in":2,"listed_at":10,"open_weights":false},
+  {"id":"b","display_name":"Beta","org":"DeepSeek","arena_score":1400,"price_out":1,"price_in":0.1,"listed_at":20,"open_weights":true},
+  {"id":"c","display_name":"Gamma","org":"Example","arena_score":1300,"price_out":1,"listed_at":5,"open_weights":null},
+  {"id":"d","display_name":"Delta","org":"Example","arena_score":1400,"price_out":1,"listed_at":20,"open_weights":true},
+  {"id":"e","display_name":"Epsilon","org":"Example","arena_score":1400,"price_out":2,"listed_at":15,"open_weights":false},
+  {"id":"free","display_name":"Free","org":"Example","arena_score":1600,"price_out":0,"listed_at":30,"open_weights":true},
+  {"id":"unknown","display_name":"Unknown price","org":"Example","arena_score":1550,"price_out":null,"listed_at":0,"open_weights":null},
+  {"id":"unranked","display_name":"Unranked","org":"Example","arena_score":null,"price_out":1,"listed_at":50,"open_weights":false},
+  {"id":"unicode","display_name":"中文模型","org":"Example","arena_score":1250,"price_out":0.0001,"listed_at":1,"open_weights":true},
+  {"id":"intel","display_name":"Intel","org":"Kimi","arena_score":1000,"aa_intelligence":60,"aa_speed":50,"price_out":4,"listed_at":2,"open_weights":true},
+  {"id":"intel2","display_name":"Intel2","org":"GLM","arena_score":1450,"aa_intelligence":45,"aa_speed":100,"price_out":10,"listed_at":1,"open_weights":true},
+  {"id":"intel3","display_name":"Intel3","org":"Llama","arena_score":1520,"aa_intelligence":30,"aa_speed":80,"price_out":5,"listed_at":0,"open_weights":false}
+]
