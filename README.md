@@ -67,6 +67,14 @@ php scripts/sync-llm-leaderboard.php --pull-only
 - 某源拉取失败时保留上一份成功 raw；三源全失败则拒绝覆盖快照
 - 别名表 `config/llm_model_aliases.php` 是各上游 id 到 canonical 模型 id 的映射；未匹配的上游模型写入 `logs/llm-unmatched.log`（高排名新模型会打 WARNING）
 
+## 现成的榜单数据
+
+不想自己跑同步脚本？可以直接取用每日更新的公开榜单数据：
+
+- [**llm-leaderboard-data**](https://github.com/AmigaMeow/llm-leaderboard-data) —— 每日自动更新的榜单快照
+  （综合榜 / 性价比榜 / 价格榜 / 长上下文榜 / 开源权重榜），含历史归档与 SVG 图表
+- 原始 JSON 接口：https://17nas.com/api/public/llm-leaderboard.php
+
 ## Data policy
 
 仓库**不含**任何上游全量数据快照（`cache/llm/raw-*.json` 已 gitignore）。`data/llm-leaderboard.sample.json` 是 24 个**虚构**模型，仅为演示页面效果。上游数据的再分发条款见 [docs/UPSTREAM-TOS.md](docs/UPSTREAM-TOS.md)——启用采集前请自行核实。
